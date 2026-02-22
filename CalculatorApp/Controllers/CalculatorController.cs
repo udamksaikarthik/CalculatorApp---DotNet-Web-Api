@@ -17,6 +17,10 @@ namespace CalculatorApp.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] CalculatorApp.Models.CalculatorClass calculator)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             calculator.Operation = calculator.Operation.ToLower().Trim();
             if (calculator == null)
             {
@@ -24,10 +28,6 @@ namespace CalculatorApp.Controllers
             }
             else
             {
-                if(calculator.Operation != "add" && calculator.Operation != "subtract" && calculator.Operation != "multiply" && calculator.Operation != "divide")
-                {
-                    return BadRequest(new { Error = "Invalid operation. Supported operations are: add, subtract, multiply, divide." });
-                }
                 if (calculator.Operation == "divide" && calculator.Number2 == 0)
                 {
                     return BadRequest(new { Error = "Division by zero is not allowed." });

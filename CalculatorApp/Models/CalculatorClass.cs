@@ -1,9 +1,17 @@
-﻿namespace CalculatorApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CalculatorApp.Models
 {
     public class CalculatorClass
     {
+        [Required(ErrorMessage = "Number1 is required.")]
         public double Number1 { get; set; }
+        [Required(ErrorMessage = "Number2 is required.")]
         public double Number2 { get; set; }
+
+        [Required(ErrorMessage = "Operation is required.")]
+        [RegularExpression("add|subtract|multiply|divide",
+            ErrorMessage = "Operation must be add, subtract, multiply, or divide.")]
         public string Operation { get; set; } = string.Empty;
         public double Result { get; set; } = 0;
 
