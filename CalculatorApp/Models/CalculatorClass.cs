@@ -7,16 +7,28 @@
         public string Operation { get; set; } = string.Empty;
         public double Result { get; set; } = 0;
 
-        private double PerformOperation()
+        public double PerformOperation()
         {
-            return Operation switch
+            switch (Operation)
             {
-                "add" => Number1 + Number2,
-                "subtract" => Number1 - Number2,
-                "multiply" => Number1 * Number2,
-                "divide" => Number2 != 0 ? Number1 / Number2 : throw new DivideByZeroException("Cannot divide by zero."),
-                _ => throw new InvalidOperationException("Invalid operation. Use 'add', 'subtract', 'multiply', or 'divide'.")
-            };
+                case "add":
+                    Result = Number1 + Number2;
+                    break;
+                case "subtract":
+                    Result = Number1 - Number2;
+                    break;
+                case "multiply":
+                    Result = Number1 * Number2;
+                    break;
+                case "divide":
+                    if (Number2 == 0)
+                        throw new DivideByZeroException("Cannot divide by zero.");
+                    Result = Number1 / Number2;
+                    break;
+                default:
+                    throw new InvalidOperationException("Invalid operation. Use 'add', 'subtract', 'multiply', or 'divide'.");
+            }
+            return Result;
         }
     }
 }

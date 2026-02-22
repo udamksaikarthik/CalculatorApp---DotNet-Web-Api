@@ -4,3 +4,12 @@ GET {{CalculatorApp_HostAddress}}/api/calculator/
 Accept: application/json
 
 ###
+
+POST {{CalculatorApp_HostAddress}}/api/calculator/
+Content-Type: application/json
+Accept: application/json
+{
+    "Operation": "add",
+    "Number1": 5,
+    "Number2": 3
+}
