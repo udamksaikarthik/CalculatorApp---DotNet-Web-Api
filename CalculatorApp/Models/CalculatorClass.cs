@@ -21,8 +21,6 @@
                     Result = Number1 * Number2;
                     break;
                 case "divide":
-                    if (Number2 == 0)
-                        throw new DivideByZeroException("Cannot divide by zero.");
                     Result = Number1 / Number2;
                     break;
                 default:
